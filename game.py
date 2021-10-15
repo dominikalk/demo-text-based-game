@@ -17,8 +17,9 @@ def remove_punct(text):
     >>> remove_punct(",go!So.?uTh")
     'goSouTh'
     """
-    pass # The pass statement does nothing. Replace it with the body of your function.
-    
+
+    return text.translate(str.maketrans('', '', string.punctuation))
+
     
 def remove_spaces(text):
     """This function is used to remove leading and trailing spaces from a string.
@@ -52,7 +53,8 @@ def normalise_input(user_input):
     >>> normalise_input("HELP!!!!!!!")
     'help'
     """
-    pass
+
+    return remove_spaces(remove_punct(user_input.lower()))
 
     
 def display_room(room):
@@ -90,7 +92,8 @@ def exit_leads_to(exits, direction):
     >>> exit_leads_to(rooms["Tutor"]["exits"], "west")
     'Reception'
     """
-    pass
+
+    return rooms[exits[direction]]['name']
     
 
 def print_menu_line(direction, leads_to):
@@ -125,13 +128,13 @@ def print_menu(exits):
     Go SOUTH to MJ and Simon's room.
     Where do you want to go?
     """
-    print("You can:")
-    
-    # COMPLETE THIS PART:
-    # Iterate over available exits:
-    #     and for each exit print the appropriate menu line
 
-    print("Where do you want to go?")
+    print("You can:")
+
+    for exit in exits:
+        print_menu_line(exit, exit_leads_to(exits, exit))
+
+    print("Where do you want to go?\n")
 
 
 def is_valid_exit(exits, user_input):
@@ -150,7 +153,8 @@ def is_valid_exit(exits, user_input):
     >>> is_valid_exit(rooms["Parking"]["exits"], "east")
     True
     """
-    pass
+
+    return user_input in exits
 
 
 def menu(exits):
@@ -169,13 +173,20 @@ def menu(exits):
         # COMPLETE THIS PART:
         
         # Display menu
+        print_menu(exits)
 
         # Read player's input
+        user_input = str(input())
 
         # Normalise the input
+        user_input = normalise_input(user_input)
 
         # Check if the input makes sense (is valid exit)
             # If so, return the player's choice
+        if(is_valid_exit(exits, user_input)):
+            return user_input
+        else:
+            print(f'\nYou cant go "{user_input}"\n')
 
 
 
@@ -192,8 +203,8 @@ def move(exits, direction):
     >>> move(rooms["Reception"]["exits"], "west") == rooms["Office"]
     False
     """
-    pass
 
+    return rooms[exits[direction]]
 
 # This is the entry point of our program
 def main():
