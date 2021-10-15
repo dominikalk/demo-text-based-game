@@ -39,8 +39,6 @@ def remove_spaces(text):
 
     return text.strip()
 
-    pass
-
 
 def normalise_input(user_input):
     """This function removes all punctuation, leading and trailing
@@ -76,7 +74,8 @@ def display_room(room):
 
     Note: <BLANKLINE> here means that doctest should expect a blank line.
     """
-    # pass # The pass statement does nothing. Replace it with the body of your function.
+
+    print(f"\n{room['name'].upper()}\n\n{room['description']}\n")
 
     
 def exit_leads_to(exits, direction):
@@ -107,7 +106,8 @@ def print_menu_line(direction, leads_to):
     >>> print_menu_line("south", "MJ and Simon's room")
     Go SOUTH to MJ and Simon's room.
     """
-    pass
+    
+    print(f'Go {direction.upper()} to {leads_to}.')
 
 
 def print_menu(exits):
