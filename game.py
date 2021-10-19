@@ -20,7 +20,7 @@ def remove_punct(text):
 
     return text.translate(str.maketrans('', '', string.punctuation))
 
-    
+
 def remove_spaces(text):
     """This function is used to remove leading and trailing spaces from a string.
     It takes a string and returns a new string with does not have leading and
@@ -56,7 +56,7 @@ def normalise_input(user_input):
 
     return remove_spaces(remove_punct(user_input.lower()))
 
-    
+
 def display_room(room):
     """This function takes a room as an input and nicely displays its name
     and description. The room argument is a dictionary with entries "name",
@@ -79,7 +79,7 @@ def display_room(room):
 
     print(f"\n{room['name'].upper()}\n\n{room['description']}\n")
 
-    
+
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
     exit taken from this dictionary). It returns the name of the room into which
@@ -94,7 +94,7 @@ def exit_leads_to(exits, direction):
     """
 
     return rooms[exits[direction]]['name']
-    
+
 
 def print_menu_line(direction, leads_to):
     """This function prints a line of a menu of exits. It takes two strings: a
@@ -109,7 +109,7 @@ def print_menu_line(direction, leads_to):
     >>> print_menu_line("south", "MJ and Simon's room")
     Go SOUTH to MJ and Simon's room.
     """
-    
+
     print(f'Go {direction.upper()} to {leads_to}.')
 
 
@@ -169,9 +169,6 @@ def menu(exits):
 
     # Repeat until the player enter a valid choice
     while True:
-        pass
-        # COMPLETE THIS PART:
-        
         # Display menu
         print_menu(exits)
 
@@ -182,13 +179,11 @@ def menu(exits):
         user_input = normalise_input(user_input)
 
         # Check if the input makes sense (is valid exit)
-            # If so, return the player's choice
+        # If so, return the player's choice
         if(is_valid_exit(exits, user_input)):
             return user_input
         else:
             print(f'\nYou cant go "{user_input}"\n')
-
-
 
 
 def move(exits, direction):
@@ -205,6 +200,7 @@ def move(exits, direction):
     """
 
     return rooms[exits[direction]]
+
 
 # This is the entry point of our program
 def main():
